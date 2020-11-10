@@ -46,7 +46,7 @@ public class LinkedList {
     }
     public void reverse(){
         Node current=head;
-        Node next;
+        Node next=null;
         Node prev=null;
         if(current==null){
             System.out.println("Empty list");
@@ -102,6 +102,80 @@ public class LinkedList {
         if(temp==null)
         return 0;
         return 1 + length(temp.next);
-
+    }
+    public void delete_at_position(int position){
+        Node temp1=this.head;
+        Node temp2;
+        if(temp1==null){
+            System.out.println("Empty list");
+            return;
+        }
+        if(position==1){
+            head=temp1.next;
+            return;
+        }
+        for(int i=0;i<position-2;i++){
+            temp1=temp1.next;//(n-1)th node
+        }
+        temp2=temp1.next;// n'th node
+        temp1.next=temp2.next;//(n+1)th node
+    }
+    public void delete_key(int key){
+        if(this.head==null){
+            System.out.println("Empty list");
+            return;
+        }
+        Node current=this.head;
+        Node temp=current;
+        if(temp!=null && temp.data==key){
+            this.head=temp.next;
+            return;
+        }
+        Node previous=null;
+        while(temp!=null && temp.data!=key){
+            previous=temp;
+            temp=temp.next;
+        }
+        if(temp==null){
+            System.out.println(key+ "is not present in the list");
+            return;
+        }
+        previous.next=temp.next;
+    }
+    public void search(int key){
+        Node temp=this.head;
+        if(temp==null){
+            System.out.println("Empty list");
+            return;
+        }
+        if(temp.data==key){
+            System.out.println("Found");
+            return;
+        }
+        while(temp!=null){
+            if(temp.data==key){
+                System.out.println("Found");
+                return;
+            }
+            temp=temp.next;
+        }
+        System.out.println("Not found");
+    }
+    public Node reverse_in_group_of_given_size(Node head,int k){
+        Node current=head;
+        Node next=null;
+        Node prev=null;
+        int count =0;
+        while(current!=null && count<k){
+            next=current.next;
+            current.next=prev;
+            prev=current;
+            current=next;
+            count++;
+        }
+        if(next!=null){
+            head.next=reverse_in_group_of_given_size(next,k);
+        }
+        return prev;
     }
 }

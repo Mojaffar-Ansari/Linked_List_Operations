@@ -8,7 +8,8 @@ public class Runner {
             System.out.println("\n1.Insert at end\n2.Display forword\n3.Insert at head" +
                     "\n4.Display reverse\n5.Exit\n6.Iterative reverse\n7.Recursive reverse" +
                     "\n8.Insert at given position\n9.Iterative length of list\n10.Recursive length of list" +
-                    "\n\nEnter the option: ");
+                    "\n11.Delete node from given position\n12.Delete a spacific value\n13.Search data" +
+                    "\n14.Reverse a Linked List in groups of given size\nEnter the option: ");
             int op=s.nextInt();
             switch (op){
                 case 1: System.out.println("Enter the element to be inserted: ");
@@ -38,6 +39,22 @@ public class Runner {
                 case 9: System.out.println("Length is: "+list.length());
                         break;
                 case 10: System.out.println("Length is: "+list.length(list.head));
+                         break;
+                case 11: System.out.println("Enter the position: ");
+                         position=s.nextInt();
+                         list.delete_at_position(position);
+                         break;
+                case 12: System.out.println("Enter the value: ");
+                         int key=s.nextInt();
+                         list.delete_key(key);
+                         break;
+                case 13: System.out.println("Enter the value");
+                          key=s.nextInt();
+                         list.search(key);
+                         break;
+                case 14: System.out.println("Enter the group size");
+                         int k=s.nextInt();
+                         list.head=list.reverse_in_group_of_given_size(list.head,k);
                          break;
                 default:System.out.println("Wrong input");
             }
