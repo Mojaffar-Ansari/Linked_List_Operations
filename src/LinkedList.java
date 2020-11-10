@@ -98,7 +98,7 @@ public class LinkedList {
         }
         return len;
     }
-    public int length(Node temp){
+    public int length(Node temp){ // Recursive approach
         if(temp==null)
         return 0;
         return 1 + length(temp.next);
