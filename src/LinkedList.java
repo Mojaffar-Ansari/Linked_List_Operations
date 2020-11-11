@@ -178,4 +178,61 @@ public class LinkedList {
         }
         return prev;
     }
+    public void make_loop(int k){
+        Node k_position=this.head;
+        Node l_position=this.head;
+        int count=1;
+        while(count<k){// finding k'th position node
+            k_position=k_position.next;
+            count++;
+        }
+        while(l_position.next!=null){// finding last node
+            l_position=l_position.next;
+        }
+        l_position.next=k_position;
+    }
+    public Node detect_loop(){
+        Node hare=this.head;
+        Node tortoise=this.head;
+        while (hare!=null && tortoise!=null && hare.next!=null){
+            tortoise=tortoise.next;
+            hare=hare.next.next;
+            if(hare==tortoise){
+                return hare;
+            }
+        }
+        return null;
+    }
+    public void start_of_loop(Node p){ // here p is the node return from detect_loop()
+        if(p==null){
+            System.out.println("There is no loop in the list");
+            return;
+        }
+        Node q=this.head;
+        while(p!=q){
+            p=p.next;
+            q=q.next;
+        }
+        System.out.println(p.data + " is the start node of the loop");
+    }
+    public void remove_loop(Node p){ // here p is return from detect_loop()
+        Node q=this.head;
+        Node temp=p;
+        if(p==null){
+            System.out.println("Thre is no loop in the list");
+            return;
+        }
+        int count=0;
+        while (p!=q){
+            p=p.next;
+            q=q.next;
+            count++;
+        }
+        int i=1;
+        while(i<count){
+            temp=temp.next;
+            i++;
+        }
+        temp.next=null;
+    }
 }

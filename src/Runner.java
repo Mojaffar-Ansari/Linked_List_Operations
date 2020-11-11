@@ -9,7 +9,8 @@ public class Runner {
                     "\n4.Display reverse\n5.Exit\n6.Iterative reverse\n7.Recursive reverse" +
                     "\n8.Insert at given position\n9.Iterative length of list\n10.Recursive length of list" +
                     "\n11.Delete node from given position\n12.Delete a spacific value\n13.Search data" +
-                    "\n14.Reverse a Linked List in groups of given size\nEnter the option: ");
+                    "\n14.Reverse a Linked List in groups of given size\n15.Make a loop at k'th position" +
+                    "\n16.Detect loop\n17.Find start point of loop\n18.Remove loop\nEnter the option: ");
             int op=s.nextInt();
             switch (op){
                 case 1: System.out.println("Enter the element to be inserted: ");
@@ -55,6 +56,20 @@ public class Runner {
                 case 14: System.out.println("Enter the group size");
                          int k=s.nextInt();
                          list.head=list.reverse_in_group_of_given_size(list.head,k);
+                         break;
+                case 15: System.out.println("Enter the value of k: ");
+                         k=s.nextInt();
+                          list.make_loop(k);
+                         break;
+                case 16:
+                         if(list.detect_loop()!=null)
+                             System.out.println("Loop found");
+                         else
+                             System.out.println("Loop not found");
+                         break;
+                case 17: list.start_of_loop(list.detect_loop());
+                         break;
+                case 18: list.remove_loop(list.detect_loop());
                          break;
                 default:System.out.println("Wrong input");
             }
