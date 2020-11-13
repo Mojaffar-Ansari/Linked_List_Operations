@@ -226,7 +226,7 @@ public class LinkedList {
         while (p!=q){
             p=p.next;
             q=q.next;
-            count++;
+            count++;// length of head to start node of loop
         }
         int i=1;
         while(i<count){
@@ -234,5 +234,111 @@ public class LinkedList {
             i++;
         }
         temp.next=null;
+    }
+    public Node mid_node(Node head){ // part of maerge sort
+        if(head==null){
+            return head;
+        }
+        Node s=head;
+        Node f=head;
+        while(f.next!=null && f.next.next!=null){
+            s=s.next;
+            f=f.next.next;
+        }
+        return s;
+    }
+    /*public Node merge(Node l,Node h){//Iterative approach
+        Node new_head=null;
+        Node sorting= new Node();
+        if(l==null)
+            return h;
+        if(h==null)
+            return l;
+        if(l!=null && h!=null){
+            if(l.data<=h.data){
+                sorting=l;
+                l=sorting.next;
+            }else {
+                sorting=h;
+                h=sorting.next;
+            }
+        }
+        new_head=sorting;
+        while(l!=null && h!=null){
+            if(l.data<=h.data){
+                sorting.next=l;
+                sorting=l;
+                l=sorting.next;
+            }
+            else {
+                sorting.next=h;
+                sorting=h;
+                h=sorting.next;
+            }
+        }
+        if(l==null)
+            sorting.next=h;
+        if(h==null)
+            sorting.next=l;
+        return new_head;
+    }*/
+    public Node merge(Node l,Node h){
+        Node result=null;
+        if(l==null)
+            return h;
+        if(h==null)
+            return l;
+        if(l.data<=h.data){
+            result=l;
+            result.next=merge(l.next,h);
+        }
+        else{
+            result=h;
+            result.next=merge(l,h.next);
+        }
+        return result;
+    }
+    public Node mergeSort(Node head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node mid=mid_node(head);
+        Node secondHalf=mid.next;
+        mid.next=null;
+        return merge(mergeSort(head),mergeSort(secondHalf));
+    }
+    public Node make_circular(Node head){// make a simple linked list into circular linked list
+        Node p=head;
+        while(head.next!=null){
+            head=head.next;
+        }
+        head.next=p;
+        return p;
+    }
+    public boolean circular(Node head){ //check a linked is circular or not
+        Node p=head;
+        while(p!=null){
+            p=p.next;
+            if(p==head)
+                return true;
+        }
+        return false;
+    }
+    public Node middle_node(Node head){ // return middle node of the linked list
+        if(head==null||head.next==null)
+            return head;
+        Node p=head;
+        Node q=head;
+        int count=0;
+        while(p!=null){
+            p=p.next;
+            count++;
+        }
+        int i=0;
+        while(i<count/2){
+            q=q.next;
+            i++;
+        }
+        return q;
     }
 }

@@ -10,7 +10,8 @@ public class Runner {
                     "\n8.Insert at given position\n9.Iterative length of list\n10.Recursive length of list" +
                     "\n11.Delete node from given position\n12.Delete a spacific value\n13.Search data" +
                     "\n14.Reverse a Linked List in groups of given size\n15.Make a loop at k'th position" +
-                    "\n16.Detect loop\n17.Find start point of loop\n18.Remove loop\nEnter the option: ");
+                    "\n16.Detect loop\n17.Find start point of loop\n18.Remove loop\n19.Merge sort" +
+                    "\n20.Make circular\n21.check Circular or not\n22.Middle of list\nEnter the option: ");
             int op=s.nextInt();
             switch (op){
                 case 1: System.out.println("Enter the element to be inserted: ");
@@ -70,6 +71,17 @@ public class Runner {
                 case 17: list.start_of_loop(list.detect_loop());
                          break;
                 case 18: list.remove_loop(list.detect_loop());
+                         break;
+                case 19: list.head=list.mergeSort(list.head);
+                         break;
+                case 20: list.head=list.make_circular(list.head);
+                          break;
+                case 21: if(list.circular(list.head))
+                          System.out.println("Circular");
+                         else
+                             System.out.println("Not circular");
+                         break;
+                case 22: System.out.println(list.middle_node(list.head).data);
                          break;
                 default:System.out.println("Wrong input");
             }
