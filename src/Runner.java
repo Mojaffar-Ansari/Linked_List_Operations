@@ -11,7 +11,8 @@ public class Runner {
                     "\n11.Delete node from given position\n12.Delete a spacific value\n13.Search data" +
                     "\n14.Reverse a Linked List in groups of given size\n15.Make a loop at k'th position" +
                     "\n16.Detect loop\n17.Find start point of loop\n18.Remove loop\n19.Merge sort" +
-                    "\n20.Make circular\n21.check Circular or not\n22.Middle of list\nEnter the option: ");
+                    "\n20.Make circular\n21.check Circular or not\n22.Middle of list\n23.Quick sort" +
+                    "\n24.Remove duplicates from sorted list\n25.Remove duplicates from an unsorted list\nEnter the option: ");
             int op=s.nextInt();
             switch (op){
                 case 1: System.out.println("Enter the element to be inserted: ");
@@ -83,6 +84,12 @@ public class Runner {
                          break;
                 case 22: System.out.println(list.middle_node(list.head).data);
                          break;
+                case 23: list.quickSort(list.head,list.endNode(list.head));
+                         break;
+                case 24: list.remove_duplicates(list.head);
+                         break;
+                case 25: list.remove_duplicates_unsorted(list.head);
+                          break;
                 default:System.out.println("Wrong input");
             }
         }

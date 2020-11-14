@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class LinkedList {
     Node head;
     public void insert(int data){
@@ -340,5 +342,76 @@ public class LinkedList {
             i++;
         }
         return q;
+    }
+    public Node endNode(Node head){
+        Node end=head;
+        while(end.next!=null){
+            end=end.next;
+        }
+        return end;
+    }
+    public Node partition(Node start,Node end){
+        if(start==end || start==null || end==null)
+            return start;
+        Node prev_pivot=start;
+        Node current=start;
+        int pivot=end.data;
+        while(start!=end){
+            if(start.data<pivot){
+                prev_pivot=current;
+                int temp=current.data;
+                current.data=start.data;
+                start.data=temp;
+                current=current.next;
+            }
+            start=start.next;
+        }
+        int temp=current.data;
+        current.data=pivot;
+        end.data=temp;
+        return prev_pivot;
+    }
+    public void quickSort(Node start,Node end){
+        if(start==end)
+            return;
+        Node prev_pivot=partition(start,end);
+        quickSort(start,prev_pivot);
+        if(prev_pivot!=null && prev_pivot==start){
+            quickSort(prev_pivot.next,end);
+        }
+        else if(prev_pivot!=null && prev_pivot.next!=null){
+            quickSort(prev_pivot.next.next,end);
+        }
+    }
+    public void remove_duplicates(Node head){// for sorted list
+        Node p=head;
+        Node q;
+        while(p!=null && p.next!=null){
+            if(p.data==p.next.data){
+                q=p.next.next;
+                if(q==null){
+                    p.next=null;
+                    break;
+                }
+                p.next=q;
+            }
+            if(p.data!=p.next.data)
+                p=p.next;
+        }
+    }
+    public void remove_duplicates_unsorted(Node head) {
+    Node current=head;
+    Node previous=null;
+    Set<Integer> set = new HashSet<>();
+    while(current!=null){
+        if(set.contains(current.data)){
+            previous.next=current.next;
+        }
+        else{
+            set.add(current.data);
+            previous=current;
+        }
+        current=previous.next;
+    }
     }
 }
