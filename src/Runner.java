@@ -12,7 +12,8 @@ public class Runner {
                     "\n14.Reverse a Linked List in groups of given size\n15.Make a loop at k'th position" +
                     "\n16.Detect loop\n17.Find start point of loop\n18.Remove loop\n19.Merge sort" +
                     "\n20.Make circular\n21.check Circular or not\n22.Middle of list\n23.Quick sort" +
-                    "\n24.Remove duplicates from sorted list\n25.Remove duplicates from an unsorted list\nEnter the option: ");
+                    "\n24.Remove duplicates from sorted list\n25.Remove duplicates from an unsorted list\n26.Move last element to front\n" +
+                    "27.Add 1 to a number represented as linked list\n\nEnter the option: ");
             int op=s.nextInt();
             switch (op){
                 case 1: System.out.println("Enter the element to be inserted: ");
@@ -29,7 +30,7 @@ public class Runner {
                         break;
                 case 5: System.exit(0);
                         break;
-                case 6: list.reverse();
+                case 6: list.head=list.reverse(list.head);
                         break;
                 case 7: list.recursive_reverse(list.head);
                         break;
@@ -90,6 +91,10 @@ public class Runner {
                          break;
                 case 25: list.remove_duplicates_unsorted(list.head);
                           break;
+                case 26: list.head=list.moveLastToFront(list.head);
+                         break;
+                case 27: list.head=list.add_1_to_number(list.head);
+                         break;
                 default:System.out.println("Wrong input");
             }
         }

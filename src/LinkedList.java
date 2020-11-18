@@ -46,13 +46,12 @@ public class LinkedList {
         temp.next=head;
         head=temp;
     }
-    public void reverse(){
+    public Node reverse(Node head){
         Node current=head;
         Node next=null;
         Node prev=null;
         if(current==null){
             System.out.println("Empty list");
-            return;
         }
         while(current!=null){
             next=current.next;
@@ -60,7 +59,7 @@ public class LinkedList {
             prev=current;
             current=next;
         }
-        head=prev;
+        return prev;
     }
     public void recursive_reverse(Node p){
         if(p.next==null){
@@ -399,7 +398,7 @@ public class LinkedList {
                 p=p.next;
         }
     }
-    public void remove_duplicates_unsorted(Node head) {
+    public void remove_duplicates_unsorted(Node head) { // for unsorted list
     Node current=head;
     Node previous=null;
     Set<Integer> set = new HashSet<>();
@@ -414,4 +413,39 @@ public class LinkedList {
         current=previous.next;
     }
     }
-}
+    public Node moveLastToFront(Node head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node p=head;
+        Node q=null;
+        while(p.next!=null){
+            q=p;
+            p=p.next;
+        }
+        q.next=null;
+        p.next=head;
+        head=p;
+        return head;
+    }
+    public  Node add_1_to_number(Node head){
+        head=reverse(head);
+        int carry=1;
+        Node temp=null;
+        Node p=head;
+        while(carry!=0 && p!=null){
+            int sum=p.data+1;
+            p.data=sum%10;
+            carry=sum/10;
+            temp=p;
+            p=p.next;
+        }
+        if(carry!=0){
+            Node q=new Node();
+            q.data=carry;
+            temp.next=q;
+        }
+        return reverse(head);
+        }
+    }
+
